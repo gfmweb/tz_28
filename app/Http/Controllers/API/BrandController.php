@@ -1,5 +1,7 @@
 <?php
-
+/**
+ *  Производители АВТО
+ */
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
@@ -25,6 +27,11 @@ class BrandController extends Controller
        return response()->json($result,$status,[],256);
     }
 
+    /**
+     * @param CreateBrandRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * Создать производителя
+     */
     public function createBrand(CreateBrandRequest $request)
     {
         $brand = new CarsBrand();
@@ -33,6 +40,11 @@ class BrandController extends Controller
         return response()->json([],201,[],256);
     }
 
+    /**
+     * @param UpdateBrandRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * Обновить имя производителя
+     */
     public function updateBrand(UpdateBrandRequest $request)
     {
             $brand = CarsBrand::findorfail($request->get('id'));
@@ -41,6 +53,11 @@ class BrandController extends Controller
         return response()->json([],204,[],256);
     }
 
+    /**
+     * @param DeleteBrandRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * Удалить производителя
+     */
     public function deleteBrand(DeleteBrandRequest $request)
     {
         CarsBrand::destroy($request->get('id'));

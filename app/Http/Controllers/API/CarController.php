@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Автомобили
+ */
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
@@ -11,6 +13,11 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * Получить список или конкретный автомобиль
+     */
         public function getCars(Request $request)
         {
             $result =  Car::getCars($request->get('id'));
@@ -18,6 +25,11 @@ class CarController extends Controller
             return response()->json($result,$status,[],256);
         }
 
+    /**
+     * @param UpdateCarRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * Редактировать автомобиль
+     */
         public function updateCar(UpdateCarRequest $request)
         {
             $car = Car::find($request->get('id'));
@@ -30,6 +42,11 @@ class CarController extends Controller
             return response()->json([],204,[],256);
         }
 
+    /**
+     * @param CreateCarRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * Создать автомобиль
+     */
         public function createCar(CreateCarRequest $request)
         {
             $car = new Car();
@@ -42,6 +59,11 @@ class CarController extends Controller
             return response()->json([],201,[],256);
         }
 
+    /**
+     * @param DeleteCarRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * Удалить автомобиль
+     */
     public function deleteCar(DeleteCarRequest $request)
     {
         Car::destroy($request->get('id'));
